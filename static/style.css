@@ -1,0 +1,159 @@
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #eceff4;
+  background-size: cover;
+  font-family: "Nunito", sans-serif;
+  /* background-image: url("../assets/mine2.jpg"); */
+}
+
+h1,
+h2 {
+  
+  text-align: center;
+  color: #2b3453;
+  font-family: "Nunito", sans-serif;
+}
+h1 {
+  margin-top: 5%;
+}
+
+.col-md-6 {
+  padding-bottom: 20px;
+  flex: 1;
+}
+
+html {
+  font-family: sans-serif;
+}
+
+form {
+  /* background: #ccc; */
+  margin: 0 auto;
+  padding: 20px;
+}
+
+form ol {
+  padding-left: 0;
+}
+
+form li
+ {
+  background: white;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  list-style-type: none;
+  border-radius: 30px;
+}
+
+form img {
+  height: 64px;
+  order: 1;
+}
+
+form p {
+  line-height: 32px;
+  padding-left: 10px;
+}
+
+form label,
+form button 
+#run {
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 30px;
+  /* border: 1px ridge black; */
+  font-size: 0.8rem;
+  height: auto;
+}
+
+form label:hover,
+form button:hover {
+  background-color: #ffe4ad;
+  color: white;
+}
+
+form label:active,
+form button:active {
+  background-color: #0d3f8f;
+  color: white;
+}
+
+.container {
+  margin-top: 5%;
+  max-height: 60%;
+  margin-bottom: 5%;
+}
+
+label input[type="file"] {
+  position: absolute;
+  top: -1000px;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .wrapper .file-upload {
+
+    height:200px;
+    width:200px;
+    border-radius: 100px;
+    position:relative;
+    
+    display:flex;
+    justify-content:center;
+    align-items: center;  
+
+    border:4px solid #FFFFFF;
+    overflow:hidden;
+     background-image: url("../assets/undraw_collecting_fjjl.svg"); 
+    background-size: 100%;
+    transition: all 1s; 
+    color: #FFFFFF;
+    font-size:100px;
+   } */
+
+/* .wrapper .file-upload input[type='file']{
+
+      height:200px;
+      width:200px;
+      position:absolute;
+      top:0;
+      left:0;
+      opacity:0;
+      cursor:pointer;
+
+    } */
+
+#run {
+  font-size: 40px;
+  padding: 14px 40px;
+  margin-left: 40%;
+  background-color: white;
+  padding: 5px 10px;
+  border-radius: 30px;
+  border-color: white;
+    border-bottom: white;
+    border-right-color: white;
+    border-style: hidden;
+}
+
+.footer {
+ 
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color:#343a40;
+  color:white;
+  text-align: center;
+}
