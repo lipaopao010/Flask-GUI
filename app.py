@@ -7,7 +7,7 @@ from werkzeug.utils import secure_filename
 import io
 import os
 
-import numpy as np
+# import numpy as np
 
 app = Flask(__name__)
 app.secret_key = 's3cr3t'
@@ -44,7 +44,7 @@ def allowed_file(filename):
    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 
-
+# check the file name and type, if correct, the files will be uploaded 
 @app.route('/', methods=['GET', 'POST'])
 def upload_file1():
     if request.method == 'POST':
@@ -54,6 +54,12 @@ def upload_file1():
             if file1.filename == '':
                 print(" file must have a file name !")
                 return redirect(request.url)
+            # if file2.filename != "Blast_design":
+            #     print ("Blast file name is wrong !")
+            #     return redirect(request.url)
+            # if file1.filename != "block_model":
+            #     print ("Block file name is wrong !")
+            #     return redirect(request.url)
             if not allowed_file(file1.filename):
                 print("this file extension is not allowed !")
                 print(file1.filename)

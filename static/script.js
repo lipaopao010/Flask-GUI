@@ -7,6 +7,7 @@ const blastmessage = document.querySelector("#blastmessage");
 inputModelFile.addEventListener("change", updateModelFile);
 inputBlastFile.addEventListener("change", updateBlastFile);
 
+
 // function to get the uploaded model file name:
 
 function getModelFileName() {
@@ -166,3 +167,10 @@ function runProgram() {
     });
   }
 }
+
+
+var form = document.getElementById("#run");
+function handleForm(event) { event.preventDefault(); } 
+form.addEventListener('submit', handleForm);
+
+// document.getElementById("#run").addEventListener("click", runProgram());

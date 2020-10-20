@@ -28,96 +28,39 @@
     <!-- Just an image -->
     <nav class="navbar navbar-dark bg-dark">
       <a class="navbar-brand">
-        <img height="60" alt="logo" src ="/static/logo-big.png" />
+        <img height="60" alt="logo" src="/static/logo-big.png" />
       </a>
     </nav>
 
     <!-- welcome paragragh -->
-    <h1>Welcome to our page </h1>
+    <h1>Welcome to our page</h1>
     <h2>Please upload yor files</h2>
 
-
-    <!-- TODO: NEED TO DELETE THIS SECTION AND LINK THE JAVASCRIPT TO THE BUTTOM PART -->
-
-
-    <!-- first form to submit model file -->
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 col-sm-12">
-          <form id="modelcontainer">
-            <div class="wrapper">
-              <label class="modellabel">
-                <img
-                  src="/static/file1.svg"
-                  class="img-fluid"
-                  alt="image for uploading"
-                />
-                <div class="file-upload">
-                  <input type="file" id="modelfile" accept=".csv" />
-                </div>
-                <div>Choose <b>MODEL FILE</b> to upload</div>
-              </label>
-            </div>
-            <!-- this is the message showing file name -->
-            <div id="modelmessage">
-              <p>No files currently selected for upload</p>
-            </div>
-          </form>
-        </div>
-        <!-- this is where to upload the second file -->
-        <div class="col-md-6 col-sm-12">
-          <form>
-            <div class="wrapper">
-              <label>
-                <img
-                  src="/static/file2.svg"
-                  class="img-fluid"
-                  alt="image for uploading"
-                />
-                <div class="file-upload">
-                  <input type="file" id="blastfile" accept=".csv" />
-                </div>
-                Choose <b>BLAST FILE</b> to upload
-              </label>
-            </div>
-            <!-- this is the message showing file name -->
-            <div id="blastmessage">
-              <p>No files currently selected for upload</p>
-            </div>
-          </form>
-        </div>
+    <form method="POST" enctype="multipart/form-data">
+      <div>
+        <label>Choose <b>MODEL FILE</b> to upload</label>
+        <input type="file" id="modelfile" accept=".csv" name="file1" />
       </div>
 
-
-
-<!-- NOTE: THIS IS THE PART LIKED WITH SERVER!
-
-TODO: ADD STYLES AND JAVASCRIPT FOR ERROR HANDLING 
--->
-
-
-      <form  method = "POST" 
-      enctype = "multipart/form-data">
-      <input type = "file" name = "file1"  />
-      <input type = "file" name = "file2"  />
-      <input id = "file1" type = "submit"/>
-      </form>   
-
-      <!-- <form  method = "POST" 
-      enctype = "multipart/form-data">
-      <input type = "file" name = "file2" />
-      <input type = "submit"/>
-      </form>    -->
-
-      <!-- <form> -->
-
-      <!-- <form href="/run" method=post enctype=multipart/form-data > -->
-        <!-- the button to run program -->
-        <!-- <a href="/run"> -->
-          <!-- <button id="run" onclick="runProgram()">Run program</button>
-      </form>
+      <div id="modelmessage">
+        <p>No files currently selected for upload</p>
       </div>
-    </div> -->
+
+      <!-- second form to submit blast file -->
+
+      <div>
+        <label>Choose <b>BLAST FILE</b> to upload</label>
+        <input type="file" id="blastfile" accept=".csv" name="file2" />
+      </div>
+
+      <div id="blastmessage">
+        <p>No files currently selected for upload</p>
+      </div>
+
+      <!-- the button to run program -->
+      <button id="run" type="submit" onclick="runProgram()">Run program</button>
+      <!-- <input id = "file1" type = "submit"/> -->
+    </form>
 
     <!-- footer section -->
     <div class="footer">
@@ -130,63 +73,5 @@ TODO: ADD STYLES AND JAVASCRIPT FOR ERROR HANDLING
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="sweetalert2.all.min.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script>
-//     $(document).ready(function() {
-
-//       $('form').on('submit', function(event) {
-
-//         $.ajax({
-//             data : {
-//               modelFile: $('#file1').val(),
-      
-//             },
-//           type : 'POST',
-//           url : '/run_program'
-//           })
-//         .done(function(data) {
-
-//         if (data.error) {
-//       console.log(data.error)
-//     }
-//     else {
-//       $('#successAlert').text(data.name).show();
-//       $('#errorAlert').hide();
-//     }
-
-//   });
-
-//   event.preventDefault();
-
-// });
-
-//     });   
-
-
-//     $(document).ready(function() {
-//        $('#file1').click(function(){
-//            var file1 = $('#file1').val();
-//            console.log(file1);
-//            $.ajax({
-//            url: "/uploader1",
-//            type: "get",
-//            data: {file1: file},
-//            success: function(response) {
-//            $("#file1Result").html(response.html);
-//           },
-//           error: function(xhr) {
-//             console.log(error)
-//             //Do Something to handle error
-//          }
-//          });
-//        });
-//     });
-    // $.ajax({
-    //   type: "POST",
-    //   url: "run",
-    //   // data: { param: run}
-    //   }).done(function( o ) {
-    //       // do something
-    // });
-  </script>
   </body>
 </html>
