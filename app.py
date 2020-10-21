@@ -7,7 +7,8 @@ import subprocess
 import io
 import os
 
-
+blockname = "test1"
+blastname = "test2"
 
 app = Flask(__name__)
 app.secret_key = 's3cr3t'
@@ -42,7 +43,7 @@ def allowed_file(filename):
 @app.route('/', methods=['POST'])
 
 def upload_files():
-    
+        global blockname, blastname
         if request.files:
             file1 = request.files['file1']
             file2 = request.files['file2']
@@ -75,7 +76,10 @@ def upload_files():
                 print(blastname)
                 print(request.files)
                 print('file saved')
-                # str_output = process_files(blockname, blastname)
+
+
+
+                # str_output = run_program()
                 # file_1 = "uploads/"+blockname
                 # file_2 = "uploads/"+blastname
                 # subprocess.run(["runfile.exe", "--blast_file", file_1, "--origin_file", file_2])
@@ -92,12 +96,12 @@ def upload_files():
 #this is the function to run program
 
 @app.route('/run_program',methods=['GET','POST'])
-def run_program(blockname, blastname):
+def run_program():
     file_1 = "uploads/"+blockname 
     file_2 = "uploads/"+blastname
     print(file_1)
     print(file_2)
-    #subprocess.run(["runfile.exe", "--blast_file", file_1, "--origin_file", file_2])
+    # subprocess.run(["runfile.exe", "--blast_file", file_1, "--origin_file", file_2])
     file_output ='test.txt'
     with open(file_output, "r") as file:
         content = file.read()
