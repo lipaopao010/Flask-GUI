@@ -3,11 +3,11 @@ from flask import Flask, flash, render_template, make_response
 from flask import redirect, request, jsonify, url_for
 from flask import send_from_directory
 from werkzeug.utils import secure_filename
-
+import subprocess
 import io
 import os
 
-# import numpy as np
+
 
 app = Flask(__name__)
 app.secret_key = 's3cr3t'
@@ -17,14 +17,8 @@ app.debug = True
 @app.route('/', methods=['GET'])
 def index():
     title = 'Create the input'
-    return render_template('index.html',
-                           title=title)
+    return render_template('index.html', title=title)
 
-
-
-# @app.route('/run',methods= ['GET'])
-# def call_fx(blast,origin):
-#     return blast, origin
 
 
 path = os.getcwd()
@@ -45,13 +39,17 @@ def allowed_file(filename):
 
 
 # check the file name and type, if correct, the files will be uploaded 
-@app.route('/', methods=['GET', 'POST'])
-def upload_file1():
-    if request.method == 'POST':
+@app.route('/', methods=['POST'])
+
+def upload_files():
+    
         if request.files:
             file1 = request.files['file1']
             file2 = request.files['file2']
+            blockname = file1.filename
+            blastname = file2.filename
             if file1.filename == '':
+                flash('No file part')
                 print(" file must have a file name !")
                 return redirect(request.url)
             # if file2.filename != "Blast_design":
@@ -70,22 +68,58 @@ def upload_file1():
                 filename2 = secure_filename(file2.filename)
                 file1.save(os.path.join(app.config['UPLOAD_FOLDER'], file1.filename))
                 file2.save(os.path.join(app.config['UPLOAD_FOLDER'], file2.filename))
-            print(file1)
-            print(file2)
-            print(request.files)
-            print('file saved')
+                flash('files successfully uploaded and displayed')
+                print(file1)
+                print(file2)
+                print(blockname)
+                print(blastname)
+                print(request.files)
+                print('file saved')
+                # str_output = process_files(blockname, blastname)
+                # file_1 = "uploads/"+blockname
+                # file_2 = "uploads/"+blastname
+                # subprocess.run(["runfile.exe", "--blast_file", file_1, "--origin_file", file_2])
+                return redirect(request.url)
+               
+               
+                
+           
+    
 
-            return redirect(request.url)
-    return render_template('index.html')
 
 
 
+#this is the function to run program
 
-# this is the function to download the files
-@app.route('/uploads/<filename>')
-def uploaded_file(filename):
+@app.route('/run_program',methods=['GET','POST'])
+def run_program(blockname, blastname):
+    file_1 = "uploads/"+blockname 
+    file_2 = "uploads/"+blastname
+    print(file_1)
+    print(file_2)
+    #subprocess.run(["runfile.exe", "--blast_file", file_1, "--origin_file", file_2])
+    file_output ='test.txt'
+    with open(file_output, "r") as file:
+        content = file.read()
+    return render_template("display.html", content=content)
+
+
+
+# this section will display the content in txt file, please comment out the code above and try this one
+
+# @app.route('/run_program',methods=['GET','POST'])
+# def run_program():
+#     file_output ='test.txt'
+#     with open(file_output, "r") as file:
+#         content = file.read()
+#     return render_template("display.html", content=content)  
+
+
+ # this is the function to download the files
+@app.route('/downloads/<filename>')
+def download_file(filename):
     return send_from_directory(app.config['UPLOAD_FOLDER'],
-                               filename)
+                            filename=filename, as_attachment=False)  
 
 
 if __name__ == '__main__':

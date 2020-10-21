@@ -36,6 +36,8 @@
     <h1>Welcome to our page</h1>
     <h2>Please upload yor files</h2>
 
+   
+
     <form method="POST" enctype="multipart/form-data">
       <div>
         <label>Choose <b>MODEL FILE</b> to upload</label>
@@ -57,10 +59,18 @@
         <p>No files currently selected for upload</p>
       </div>
 
-      <!-- the button to run program -->
-      <button id="run" type="submit" onclick="runProgram()">Run program</button>
+      <!-- the button to upload files -->
+      <button id="upload" type="submit" onclick="runProgram()" action="{{ url_for('upload_files') }}">Upload file</button>
       <!-- <input id = "file1" type = "submit"/> -->
+
+     
     </form>
+
+     <!-- the button to run program -->
+     <a id="run" href= "/run_program" class="btn btn-primary btn-lg" type ="submit" action="{{ url_for('run_program') }}">Run program </a>
+      
+
+    
 
     <!-- footer section -->
     <div class="footer">

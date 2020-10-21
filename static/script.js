@@ -156,7 +156,7 @@ function runProgram() {
       text: "File executed successfully in terminal !",
     });
 
-    window.location.href = '/run';
+    window.location.href = '/run_program';
   } else {
     console.log("something is wrong !");
     //message of sweet alert
@@ -169,8 +169,8 @@ function runProgram() {
 }
 
 
-var form = document.getElementById("#run");
-function handleForm(event) { event.preventDefault(); } 
-form.addEventListener('submit', handleForm);
+// var form = document.getElementById("#run");
+// function handleForm(event) { event.preventDefault(); } 
+// form.addEventListener('submit', handleForm);
 
 // document.getElementById("#run").addEventListener("click", runProgram());
