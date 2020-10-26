@@ -6,6 +6,8 @@ from werkzeug.utils import secure_filename
 import subprocess
 import io
 import os
+from flask import abort
+
 
 blockname = "test1"
 blastname = "test2"
@@ -49,27 +51,35 @@ def upload_files():
             file2 = request.files['file2']
             blockname = file1.filename
             blastname = file2.filename
-            if file1.filename == '':
-                flash('No file part')
-                print(" file must have a file name !")
+            print(blockname)
+            print(blastname)
+            # if file1.filename == '':
+                # flash('No file part')
+                # flash("this filen is not allowed !", "warning")
+                # print(" file must have a file name !")
+                # return redirect(request.url)
+            if  blastname != "blast_bi.csv":
+                flash("this file name need to be blast_bi !", "biwarning")
+                print ("blast_bi file name is wrong !")
+                
                 return redirect(request.url)
-            # if file2.filename != "Blast_design":
-            #     print ("Blast file name is wrong !")
-            #     return redirect(request.url)
-            # if file1.filename != "block_model":
-            #     print ("Block file name is wrong !")
-            #     return redirect(request.url)
+            if not blockname == "blast_bo.csv":
+                flash("this file name need to be blast_bo !", "bowarning")
+                print ("blast_bo file name is wrong !")
+                
+                return redirect(request.url)
             if not allowed_file(file1.filename):
                 print("this file extension is not allowed !")
+                flash("this file extension is not allowed !", "typewarning")
                 print(file1.filename)
                 return redirect(request.url)
 
             else:
                 filename1 = secure_filename(file1.filename)
                 filename2 = secure_filename(file2.filename)
-                file1.save(os.path.join(app.config['UPLOAD_FOLDER'], file1.filename))
-                file2.save(os.path.join(app.config['UPLOAD_FOLDER'], file2.filename))
-                flash('files successfully uploaded and displayed')
+                file1.save(os.path.join(app.config['UPLOAD_FOLDER'], filename1))
+                file2.save(os.path.join(app.config['UPLOAD_FOLDER'], filename2))
+                flash("files successfully uploaded!", "uploadsuccess")
                 print(file1)
                 print(file2)
                 print(blockname)
@@ -102,6 +112,7 @@ def run_program():
     print(file_1)
     print(file_2)
     # subprocess.run(["runfile.exe", "--blast_file", file_1, "--origin_file", file_2])
+    flash("Program has run the executable successfully. The output is saved as 'outputs/blast_model_bm.csv", "runsuccess")
     file_output ='test.txt'
     with open(file_output, "r") as file:
         content = file.read()

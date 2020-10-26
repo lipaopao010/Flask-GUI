@@ -27,7 +27,7 @@
 
     <!-- Just an image -->
     <nav class="navbar navbar-dark bg-dark">
-      <a class="navbar-brand">
+      <a class="navbar-brand" >
         <img height="60" alt="logo" src="/static/logo-big.png" />
       </a>
     </nav>
@@ -37,37 +37,69 @@
     <h2>Please upload yor files</h2>
 
    
+    
+        
+        
 
     <form method="POST" enctype="multipart/form-data">
+      
       <div>
-        <label>Choose <b>MODEL FILE</b> to upload</label>
+        <label>Choose <b>BLAST BO FILE</b> to upload</label>
         <input type="file" id="modelfile" accept=".csv" name="file1" />
+        
       </div>
 
       <div id="modelmessage">
         <p>No files currently selected for upload</p>
       </div>
-
+      {% with bowarning = get_flashed_messages(category_filter=["bowarning"]) %}
+      {% if bowarning %}
+          {%- for message in bowarning %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span>{{ message }}</span>
+      </div>
+      {% endfor -%}
+      {% endif %}
+  {% endwith %}
       <!-- second form to submit blast file -->
 
+      
       <div>
-        <label>Choose <b>BLAST FILE</b> to upload</label>
+        <label>Choose <b>BLAST BI FILE</b> to upload</label>
         <input type="file" id="blastfile" accept=".csv" name="file2" />
       </div>
 
       <div id="blastmessage">
         <p>No files currently selected for upload</p>
       </div>
+      {% with biwarning = get_flashed_messages(category_filter=["biwarning"]) %}
+      {% if biwarning %}
+          {%- for message in biwarning %}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+      <span>{{ message }}</span>
+      </div>
 
+      {% endfor -%}
+      {% endif %}
+  {% endwith %}
       <!-- the button to upload files -->
-      <button id="upload" type="submit" onclick="runProgram()" action="{{ url_for('upload_files') }}">Upload file</button>
+      <button id="upload" type="submit" >Upload files</button>
+      {% with uploadsuccess = get_flashed_messages(category_filter=["uploadsuccess"]) %}
+      {% if uploadsuccess %}
+          {%- for message in uploadsuccess %}
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <span>{{ message }}</span>
+        </div>
+      {% endfor -%}
+      {% endif %}
+  {% endwith %}
       <!-- <input id = "file1" type = "submit"/> -->
-
+      <!-- action="{{ url_for('upload_files') }}" -->
      
     </form>
 
      <!-- the button to run program -->
-     <a id="run" href= "/run_program" class="btn btn-primary btn-lg" type ="submit" action="{{ url_for('run_program') }}">Run program </a>
+     <a id="run" href= "/run_program"  onClick= "runProgram1()" type ="submit" action="{{ url_for('run_program') }}">Run program </a>
       
 
     

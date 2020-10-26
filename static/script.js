@@ -64,32 +64,32 @@ function updateModelFile() {
     para.textContent = "No files currently selected for upload";
   } else if (fileTypeModel !== "csv") {
     // if file type is not csv, pop up message of incorrect file type
-    para.textContent = "File type is not correct, please upload a csv file!";
+    para.textContent = "File type is not correct, please select a csv file!";
     // message of sweet alert
     Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "File type is wrong!",
     });
-  } else if (modelFileName === "block_model") {
-    // if the file name matches block_model, showing the message of successful upload
+  } else if (modelFileName === "blast_bo") {
+    // if the file name matches blast_bo, showing the message of successful upload
     console.log(modelFileName);
-    para.textContent = `File name ${modelFileName} successfully uploaded! `;
+    para.textContent = `File name ${modelFileName} successfully selected! `;
 
     //message of sweet alert
     Swal.fire({
       icon: "success",
       title: "Great!",
-      text: "Your model file is uploaded successfully!",
+      text: "Your blast_bo file is selected successfully!",
     });
   } else {
     // if file name doesn't match, show the message of file name incorrect
-    para.textContent = `File name ${modelFileName} . Please upload the correct file!`;
+    para.textContent = `File name ${modelFileName} . Please select the correct file!`;
     // sweet alert message
     Swal.fire({
       icon: "error",
       title: "File name is not right",
-      text: "Please upload the correct file!",
+      text: "Please select the correct blast_bo file!",
     });
   }
   // put the message into the text of message area
@@ -111,29 +111,29 @@ function updateBlastFile() {
   if (!blastFileName) {
     para.textContent = "No files currently selected for upload";
   } else if (fileTypeBlast !== "csv") {
-    para.textContent = "File type is not correct, please upload a csv file!";
+    para.textContent = "File type is not correct, please select a csv file!";
     //message of sweet alert
     Swal.fire({
       icon: "error",
       title: "Oops...",
       text: "File type is wrong!",
     });
-  } else if (blastFileName !== "Blast_design") {
-    para.textContent = `File name ${blastFileName} . Please upload the correct file!`;
+  } else if (blastFileName !== "blast_bi") {
+    para.textContent = `File name ${blastFileName} . Please select the correct blast_bi file!`;
     //message of sweet alert
     Swal.fire({
       icon: "error",
       title: "File name is not right",
-      text: "Please upload the correct file!",
+      text: "Please select the correct blast_bi file!",
     });
   } else {
-    para.textContent = `File name ${blastFileName} successfully uploaded !`;
+    para.textContent = `File name ${blastFileName} successfully selected !`;
 
     //message of sweet alert
     Swal.fire({
       icon: "success",
       title: "Great!",
-      text: "Your blast file is uploaded successfully!",
+      text: "Your blast_bi file is successfully selected!",
     });
   }
   blastmessage.appendChild(para);
@@ -141,36 +141,39 @@ function updateBlastFile() {
 
 // run terminal after clicking "run program" button
 // if the files are not correct, the program cannot run
-function runProgram() {
-  const file1 = getModelFileName();
-  console.log(file1);
-  const file2 = getBlastFileName();
-  console.log(file2);
-  // both file names need to match to show the correct message
-  if (file1 == "block_model" && file2 == "Blast_design") {
-    console.log("both files are correct!");
-    //message of sweet alert
-    Swal.fire({
-      icon: "success",
-      title: "Great!",
-      text: "File executed successfully in terminal !",
-    });
 
-    window.location.href = '/run_program';
-  } else {
-    console.log("something is wrong !");
-    //message of sweet alert
-    Swal.fire({
-      icon: "error",
-      title: "something is wrong",
-      text: "Please make sure you upload the correct files !",
-    });
-  }
-}
-
-
-// var form = document.getElementById("#run");
+// var form = document.getElementById("#upload");
 // function handleForm(event) { event.preventDefault(); } 
 // form.addEventListener('submit', handleForm);
 
-// document.getElementById("#run").addEventListener("click", runProgram());
+// document.getElementById("#upload").addEventListener("submit", runProgram1());
+// function runProgram1(e) {
+//   console.log("hi")
+//   e.preventDefault()
+//   const file1 = getModelFileName();
+//   console.log(file1);
+//   const file2 = getBlastFileName();
+//   console.log(file2);
+//   // both file names need to match to show the correct message
+//   if (file1 == "blast_bo.csv" && file2 == "blast_bi.csv") {
+//     console.log("both files are correct!");
+//     //message of sweet alert
+//     Swal.fire({
+//       icon: "success",
+//       title: "Great!",
+//       text: "File executed successfully in terminal !",
+//     });
+
+//     // window.location.href = '/run_program';
+//   } else {
+//     console.log("something is wrong !");
+//     //message of sweet alert
+//     Swal.fire({
+//       icon: "error",
+//       title: "something is wrong",
+//       text: "Please make sure you upload the correct files !",
+//     });
+//   }
+// }
+
+

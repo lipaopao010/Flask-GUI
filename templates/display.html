@@ -35,20 +35,38 @@
     <!-- welcome paragragh -->
     <h1>Welcome to our page</h1>
     <h2>Please upload yor files</h2>
-    <pre> 
+
+    {% with runsuccess = get_flashed_messages(category_filter=["runsuccess"])
+    %} {% if runsuccess %} {%- for message in runsuccess %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+      <span>{{ message }}</span>
+      <!-- <button
+        type="button"
+        class="close"
+        data-dismiss="alert"
+        aria-label="Close"
+      > -->
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor -%} {% endif %} {% endwith %}
+
+    <h4>Content: </h4>
+    <pre>
+ 
         {{ content }} 
     </pre>
 
     <!-- footer section -->
     <div class="footer">
-        <p>Made by AUGMENT EXPERT SYSTEMS</p>
-      </div>
-  
-      <!--  Script -->
-      <!-- sweet alert -->
-      <script src="static/script.js"></script>
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-      <!-- <script src="sweetalert2.all.min.js"></script> -->
-      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    </body>
-  </html>
+      <p>Made by AUGMENT EXPERT SYSTEMS</p>
+    </div>
+
+    <!--  Script -->
+    <!-- sweet alert -->
+    <script src="static/script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="sweetalert2.all.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+  </body>
+</html>
